@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abdul Bashith — AI/ML Engineer</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css">
+
+  <style>
+    /* =========================================================
+       PREMIUM SINGLE-FILE PORTFOLIO
+       - Parallax hero with layered background images & gradient shades
+       - Glassmorphism sections
+       - Dark/Light theme toggle
+       - Animated particles & subtle noise overlay
+       - Scroll reveal animations
+       - Project filter + hover tilt
+       - Sticky smart navbar with scrollspy
+       - Responsive, accessible, modern
+       ========================================================= */
+
+    /* ---------- CSS RESET ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji','Segoe UI Emoji'; }
+    img, picture, video, canvas, svg { display: block; max-width: 100%; }
+    input, button, textarea, select { font: inherit; }
+    a { text-decoration: none; color: inherit; }
+    :focus-visible { outline: 2px dashed var(--brand-500); outline-offset: 3px; }
+
+    /* ---------- THEME TOKENS ---------- */
+    :root {
+      /* Brand */
+      --brand-50:#eef4ff; --brand-100:#dce9ff; --brand-200:#b8d3ff; --brand-300:#94bdff; --brand-400:#5b95ff; --brand-500:#1a73e8; --brand-600:#0d56c5; --brand-700:#0a46a3; --brand-800:#083a86; --brand-900:#072f6e;
+      /* Surface */
+      --bg:#0b1020; /* base dark */
+      --surface:#0e152b;
+      --card:rgba(255,255,255,0.06);
+      --border:rgba(255,255,255,0.08);
+      --text:#e6ecff;
+      --muted:#a7b1c7;
+      --shadow:0 10px 30px rgba(0,0,0,.4);
+      --glass:rgba(255,255,255,0.08);
+      --glass-strong:rgba(255,255,255,0.14);
+      --glass-border:1px solid rgba(255,255,255,.16);
+      --radius-2:12px; --radius-3:18px; --radius-4:28px;
+    }
+
+    /* Light Theme */
+    html.light {
+      --bg:#f6f8fc; --surface:#ffffff; --card:rgba(255,255,255,0.75); --border:rgba(10,20,40,0.08);
+      --text:#0d1224; --muted:#4c5870; --shadow:0 10px 30px rgba(20,35,70,.12);
+      --glass:rgba(255,255,255,0.6); --glass-strong:rgba(255,255,255,0.9); --glass-border:1px solid rgba(12,18,36,.08);
+    }
+
+    /* ---------- GLOBAL BACKGROUNDS ---------- */
+    body {
+      color: var(--text);
+      background: linear-gradient(180deg, #0b1020 0%, #0c1326 40%, #0a1838 100%);
+      min-height: 100dvh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Subtle fixed noise for premium texture */
+    .noise {
+      position: fixed; inset: 0; pointer-events: none; opacity: .08; mix-blend-mode: soft-light;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">\n<filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter>\n<rect width="120" height="120" filter="url(%23n)" opacity="0.35"/>\n</svg>');
+      background-size: 200px 200px; z-index: 1;
+    }
+
+    /* ---------- HERO (Parallax with layered images + gradient shades) ---------- */
+    .hero {
+      position: relative; min-height: 92dvh; display: grid; place-items: center; text-align: center; padding: 120px 20px 60px;
+      overflow: hidden; isolation: isolate;
+      background: radial-gradient(1200px 800px at 80% 10%, rgba(26,115,232,.35), transparent 60%),
+                  radial-gradient(900px 600px at 10% 90%, rgba(91,149,255,.25), transparent 60%);
+    }
+    /* Parallax layers: replace URLs with your own high-res images if desired */
+    .hero__bg,
+    .hero__bg::before,
+    .hero__bg::after {
+      position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; z-index: -3;
+    }
+    .hero__bg {
+      filter: saturate(110%) contrast(105%);
+      background-image: url('https://inspectsolution.pro/wp-content/uploads/2024/09/DALL%C2%B7E-2024-09-06-11.27.07-A-high-definition-wide-aspect-ratio-image-depicting-the-integration-of-AI-in-engineering.-The-scene-shows-engineers-working-alongside-advanced-AI-sys.webp');
+      transform: translateZ(0);
+    }
+    .hero__bg::before { /* darker gradient shade overlay */
+      content: ""; z-index: -2;
+      background: linear-gradient(180deg, rgba(5,8,20,.6) 0%, rgba(5,8,20,.55) 40%, rgba(5,8,20,.8) 100%);
+    }
+    .hero__bg::after { /* subtle pattern overlay */
+      content: ""; z-index: -1; opacity: .25;
+      background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,.05) 0 2px, transparent 3px),
+                        radial-gradient(circle at 80% 60%, rgba(255,255,255,.04) 0 2px, transparent 3px);
+      background-size: 40px 40px, 60px 60px;
+    }
+
+    /* Gradient rings / blobs for premium feel */
+    .hero__blob {
+      position: absolute; inset: auto; width: 700px; height: 700px; border-radius: 50%; filter: blur(80px); opacity: .35; z-index: -1;
+      background: conic-gradient(from 120deg, rgba(26,115,232,.65), rgba(91,149,255,.6), rgba(8,58,134,.6), rgba(26,115,232,.65));
+      top: -120px; right: -120px; transform: rotate(15deg);
+    }
+    .hero__blob--2 { left: -160px; bottom: -160px; width: 520px; height: 520px; filter: blur(90px); opacity: .4; transform: rotate(-10deg); }
+
+    .hero__inner { max-width: 1100px; position: relative; z-index: 2; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px; font-weight: 600; letter-spacing: .4px; padding: 10px 14px; border-radius: 999px;
+      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06)); border: var(--glass-border);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 6px 20px rgba(0,0,0,.25);
+      backdrop-filter: blur(10px);
+    }
+    .badge i { color: var(--brand-400); }
+
+    .hero__title {
+      font-family: 'Poppins', ui-sans-serif; font-weight: 700; font-size: clamp(2.2rem, 5.5vw, 4rem); line-height: 1.08; margin: 16px 0 12px; letter-spacing: .2px;
+      text-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .hero__subtitle { color: var(--muted); font-size: clamp(1rem, 2.2vw, 1.25rem); margin-bottom: 26px; }
+
+    .hero__cta { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      --btn-bg: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+      --btn-text:#fff; --btn-shadow: 0 10px 20px rgba(26,115,232,.35);
+      display: inline-flex; align-items: center; gap: 10px; padding: 14px 18px; border-radius: 14px; border: 0; cursor: pointer;
+      background: var(--btn-bg); color: var(--btn-text); box-shadow: var(--btn-shadow); transition: transform .15s ease, filter .3s ease, box-shadow .3s ease; font-weight: 600;
+    }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.05); box-shadow: 0 14px 28px rgba(26,115,232,.42); }
+    .btn--ghost { background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06)); color: var(--text); border: var(--glass-border); box-shadow: 0 10px 20px rgba(0,0,0,.25); }
+
+    /* Theme toggle */
+    .toggle {
+      position: fixed; right: 16px; bottom: 16px; z-index: 9999; border-radius: 14px; padding: 10px 12px; border: var(--glass-border);
+      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06)); backdrop-filter: blur(8px); box-shadow: 0 6px 18px rgba(0,0,0,.28);
+    }
+    .toggle button { background: transparent; border: 0; color: var(--text); font-size: 20px; cursor: pointer; }
+
+    /* Particles canvas */
+    #particles { position: absolute; inset: 0; z-index: 0; opacity: .5; }
+
+    /* ---------- NAVBAR ---------- */
+    .nav {
+      position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(12,18,36,.55), rgba(12,18,36,.35)); border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav__row { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 18px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .3px; }
+    .brand i { color: var(--brand-400); font-size: 22px; }
+    .nav__links { display: flex; gap: 14px; flex-wrap: wrap; }
+    .nav__links a { position: relative; padding: 10px 12px; border-radius: 10px; color: var(--muted); font-weight: 600; }
+    .nav__links a:hover { color: var(--text); }
+    .nav__links a.active::after, .nav__links a:hover::after {
+      content: ""; position: absolute; left: 12px; right: 12px; bottom: 6px; height: 2px; background: linear-gradient(90deg, var(--brand-400), var(--brand-600)); border-radius: 2px;
+    }
+
+    /* ---------- SECTION WRAPPER ---------- */
+    .section { position: relative; padding: 80px 20px; }
+    .wrap { max-width: 1200px; margin: 0 auto; }
+
+    .title {
+      font-family: 'Poppins', ui-sans-serif; font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin: 0 0 14px; letter-spacing: .2px;
+    }
+    .lead { color: var(--muted); margin: 0 0 28px; max-width: 820px; }
+
+    /* ---------- GLASS CARDS GRID ---------- */
+    .grid { display: grid; gap: 22px; }
+    @media (min-width: 768px) { .grid.cols-3 { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+    @media (min-width: 768px) { .grid.cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+    .card {
+      background: var(--glass);
+      border: var(--glass-border);
+      border-radius: var(--radius-3);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before { /* corner sheen */
+      content:""; position:absolute; top:-40%; right:-40%; width: 70%; height: 140%; transform: rotate(35deg);
+      background: radial-gradient(closest-side, rgba(255,255,255,.18), transparent 70%);
+      filter: blur(18px);
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about__meta { display: grid; gap: 16px; }
+    @media (min-width: 920px) { .about__meta { grid-template-columns: 1.2fr 1fr; align-items: center; } }
+    .avatar {
+  width: 160px; 
+  aspect-ratio: 1; 
+  border-radius: 50%; 
+  border: 6px solid rgba(255,255,255,.25); 
+  box-shadow: var(--shadow);
+  background-image: url('bas.jpeg'); 
+  background-size: cover; 
+  background-position: cover; 
+  margin: 0 auto 18px;
+}
+    .about__tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .chip { padding: 8px 12px; border-radius: 999px; background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08)); border: var(--glass-border); font-weight: 600; color: var(--text); }
+
+    /* ---------- SKILLS (interactive bars + badges) ---------- */
+    .skills__wrap { display: grid; gap: 22px; }
+    @media (min-width: 920px) { .skills__wrap { grid-template-columns: 1fr 1fr; } }
+    .skillbar { background: rgba(255,255,255,.06); border: var(--glass-border); border-radius: 12px; padding: 14px; }
+    .skillbar__meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .skillbar__bar { height: 10px; border-radius: 12px; background: linear-gradient(90deg, rgba(26,115,232,.35), rgba(26,115,232,.85)); width: 0%; transition: width 1.2s cubic-bezier(.2,.7,.2,1); }
+    .badges { display: flex; flex-wrap: wrap; gap: 10px; }
+    .badge--soft { background: rgba(26,115,232,.12); border: 1px solid rgba(91,149,255,.25); color: #cfe0ff; }
+
+    /* ---------- PROJECTS ---------- */
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+    .filter { padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,.08); border: var(--glass-border); cursor: pointer; font-weight: 600; color: var(--muted); }
+    .filter.active { color: var(--text); background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08)); }
+
+    .project {
+      position: relative; overflow: hidden; border-radius: var(--radius-3); border: var(--glass-border); background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow); transform-style: preserve-3d; perspective: 800px; transition: transform .2s ease;
+    }
+    .project:hover { transform: translateY(-6px); }
+    .project__media { position: relative; height: 200px; background: #0d1328; overflow: hidden; }
+    .project__media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(110%) contrast(105%); transition: transform .8s ease; }
+    .project:hover .project__media img { transform: scale(1.07); }
+    .project__body { padding: 16px 18px 20px; }
+    .project__title { font-family: 'Poppins'; font-size: 1.1rem; margin: 4px 0 8px; }
+    .project__tags { display:flex; flex-wrap: wrap; gap: 8px; }
+    .tag { font-size: .85rem; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.08); border: var(--glass-border); color: var(--muted); }
+
+    /* ---------- INTERESTS ---------- */
+    .feature { display: flex; gap: 14px; align-items: flex-start; }
+    .feature i { font-size: 22px; color: var(--brand-400); padding-top: 2px; }
+
+    /* ---------- CONTACT ---------- */
+    .contact {
+      display: grid; gap: 22px; align-items: start;
+    }
+    @media (min-width: 920px) { .contact { grid-template-columns: 1.2fr .8fr; } }
+    .contact__cta { display: grid; gap: 14px; }
+    .contact__row { display: flex; align-items: center; gap: 10px; }
+    .contact__row i { color: var(--brand-400); }
+
+    form { display: grid; gap: 14px; }
+    .input { background: rgba(255,255,255,.08); border: var(--glass-border); border-radius: 12px; color: var(--text); padding: 12px 14px; width: 100%; }
+    textarea.input { min-height: 120px; resize: vertical; }
+
+    /* ---------- FOOTER ---------- */
+    footer { position: relative; padding: 60px 20px; margin-top: 40px; background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border-top: 1px solid rgba(255,255,255,.08); }
+    .footer__inner { max-width: 1200px; margin: 0 auto; display: grid; gap: 18px; place-items: center; text-align: center; }
+    .social { display: flex; gap: 12px; }
+    .social a { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: rgba(255,255,255,.08); border: var(--glass-border); }
+
+    /* ---------- SCROLL REVEAL ---------- */
+    [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    [data-reveal].reveal { opacity: 1; transform: translateY(0); }
+
+    /* ---------- MEDIA QUERIES ---------- */
+    @media (max-width: 640px) {
+      .nav__links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero" id="home" aria-label="Intro section">
+    <div class="hero__bg"></div>
+    <div class="hero__blob"></div>
+    <div class="hero__blob hero__blob--2"></div>
+    <canvas id="particles" aria-hidden="true"></canvas>
+
+    <div class="hero__inner" data-reveal>
+      <span class="badge"><i class="ri-cpu-line"></i> AI/ML Engineer • GenAI • CV • NLP</span>
+      <h1 class="hero__title">Abdul Bashith</h1>
+      <p class="hero__subtitle">From Civil Engineer → AI Engineer. Building reliable ML systems, GenAI apps, and vision pipelines that ship.</p>
+      <div class="hero__cta">
+        <a href="#projects" class="btn"><i class="ri-rocket-line"></i> View Projects</a>
+        <a href="#contact" class="btn btn--ghost"><i class="ri-mail-line"></i> Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav__row">
+      <a class="brand" href="#home"><i class="ri-sparkling-2-line"></i> <span>AB • Portfolio</span></a>
+      <div class="nav__links" role="list">
+        <a href="#about" role="listitem">About</a>
+        <a href="#skills" role="listitem">Skills</a>
+        <a href="#projects" role="listitem">Projects</a>
+        <a href="#learning" role="listitem">Learning</a>
+        <a href="#interests" role="listitem">Interests</a>
+        <a href="#contact" role="listitem">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="section" aria-label="About Abdul">
+    <div class="wrap">
+      <div class="card" data-reveal>
+        <div class="about__meta">
+          <div>
+            <h2 class="title">About Me</h2>
+            <p class="lead">B.Tech Civil → AI. Former Construction Site Supervisor (CMK Pvt Ltd, 2021–2023). Trained in Python, DS, ML, DL; AI & Python Developer (Hope AI, 2023). Ex‑AI Project Developer @ SD PRO SOLUTIONS (Trichy) — shipped Multi‑Modal & Generative AI projects with Flask deployments.</p>
+            <div class="about__tags">
+              <span class="chip"><i class="ri-shining-2-line"></i> Tamil / English</span>
+              <span class="chip"><i class="ri-terminal-box-line"></i> Python</span>
+              <span class="chip"><i class="ri-cloud-line"></i> GCP</span>
+              <span class="chip"><i class="ri-shield-star-line"></i> Ethical AI</span>
+            </div>
+          </div>
+          <div>
+            <div class="avatar" aria-label=""></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills" class="section" aria-label="Skills">
+    <div class="wrap">
+      <div class="card" data-reveal>
+        <h2 class="title">Skills</h2>
+        <p class="lead">Hands‑on with end‑to‑end ML: data → model → eval → deploy. Comfortable across classical ML, deep learning, GenAI (LLMs), CV, and agents.</p>
+        <div class="skills__wrap">
+          <div>
+            <div class="skillbar" data-skill="Python" data-level="92">
+              <div class="skillbar__meta"><strong>Python</strong><span>92%</span></div>
+              <div class="skillbar__bar"></div>
+            </div>
+            <div class="skillbar" data-skill="Machine Learning" data-level="88">
+              <div class="skillbar__meta"><strong>Machine Learning</strong><span>88%</span></div>
+              <div class="skillbar__bar"></div>
+            </div>
+            <div class="skillbar" data-skill="Deep Learning" data-level="84">
+              <div class="skillbar__meta"><strong>Deep Learning</strong><span>84%</span></div>
+              <div class="skillbar__bar"></div>
+            </div>
+            <div class="skillbar" data-skill="NLP" data-level="80">
+              <div class="skillbar__meta"><strong>NLP</strong><span>80%</span></div>
+              <div class="skillbar__bar"></div>
+            </div>
+          </div>
+          <div>
+            <div class="badges">
+              <span class="chip badge--soft">Pandas</span>
+              <span class="chip badge--soft">scikit‑learn</span>
+              <span class="chip badge--soft">PyTorch / TensorFlow</span>
+              <span class="chip badge--soft">OpenCV</span>
+              <span class="chip badge--soft">Flask</span>
+              <span class="chip badge--soft">LLM APIs</span>
+              <span class="chip badge--soft">Agents</span>
+              <span class="chip badge--soft">GCP</span>
+              <span class="chip badge--soft">SQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects" class="section" aria-label="Projects">
+    <div class="wrap">
+      <div class="card" data-reveal>
+        <h2 class="title">Projects</h2>
+        <p class="lead">Selected work across ML, DL, CV and GenAI. Filter to explore.</p>
+        <div class="filters" role="tablist" aria-label="Project filters">
+          <button class="filter active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="filter" data-filter="ml" role="tab">ML</button>
+          <button class="filter" data-filter="dl" role="tab">DL</button>
+          <button class="filter" data-filter="cv" role="tab">CV</button>
+          <button class="filter" data-filter="nlp" role="tab">NLP</button>
+          <button class="filter" data-filter="genai" role="tab">GenAI</button>
+        </div>
+
+        <div class="grid cols-3" id="projectGrid">
+          <!-- Project 1 -->
+          <article class="project" data-cat="ml">
+            <div class="project__media">
+              <img src="https://i.ytimg.com/vi/0myaZxl4XWw/maxresdefault.jpg" alt="Air Quality Index Prediction" loading="lazy">
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">AQI Prediction</h3>
+              <p>Classification & regression ensemble predicting city‑level AQI from environmental signals.</p>
+              <div class="project__tags">
+                <span class="tag">scikit‑learn</span><span class="tag">Pandas</span><span class="tag">XGBoost</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project" data-cat="ml">
+            <div class="project__media">
+              <img src="https://jpinfotech.org/wp-content/uploads/2021/11/JPPY2120-Prediction-of-Modernized-Loan-Approval-System.jpg" alt="Loan Approval Predictions" loading="lazy">
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">Loan Approval</h3>
+              <p>Supervised learning to predict approval probability with explainability dashboards.</p>
+              <div class="project__tags">
+                <span class="tag">LogReg</span><span class="tag">SHAP</span><span class="tag">Flask</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project" data-cat="dl cv">
+            <div class="project__media">
+              <img src="https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41598-025-87800-3/MediaObjects/41598_2025_87800_Fig1_HTML.png" alt="Rice Plant Classification" loading="lazy">
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">Rice Plant Classification</h3>
+              <p>Multi‑architecture vision pipeline for crop variety & disease classification.</p>
+              <div class="project__tags">
+                <span class="tag">CNN</span><span class="tag">Transfer Learning</span><span class="tag">OpenCV</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project" data-cat="dl genai">
+            <div class="project__media">
+              <img src="https://www.simplyvoting.com/wp-content/uploads/2025/07/Countries-using-online-voting-2025-scaled.png" alt="AI Online Voting" loading="lazy">
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">AI‑Enhanced Online Voting</h3>
+              <p>DL for secure verification + GenAI assistance for UX. Deployed with Flask.</p>
+              <div class="project__tags">
+                <span class="tag">FaceID</span><span class="tag">Liveness</span><span class="tag">Flask</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="project" data-cat="nlp genai">
+            <div class="project__media">
+              <img src="https://www.johnsnowlabs.com/wp-content/uploads/2024/02/the-stage-of-deploying-generative-ai-in-healthcare-scaled.jpg" alt="GenAI Sentiment Analysis" loading="lazy">
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">GenAI Sentiment</h3>
+              <p>LLM‑augmented sentiment & aspect mining across multi‑lingual reviews.</p>
+              <div class="project__tags">
+                <span class="tag">LLM</span><span class="tag">Prompting</span><span class="tag">Evaluation</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 6 -->
+          <article class="project" data-cat="dl genai">
+            <div class="project__media">
+              <img src="https://tpp.hikvision.com/Common/Images/Cache/75d097e159ae4386ae63b7dfdc8ab4c3.png" alt="AI Theft Object Detection" loading="lazy">
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">AI-Theft Object Detection Computer Vision YoloV11</h3>
+              <p>DL for secure shopping mall surveillance. Deployed with Flask.</p>
+              <div class="project__tags">
+                <span class="tag">YOLOv11</span><span class="tag">OpenCV</span><span class="tag">Flask</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <p class="lead" style="margin-top:16px;">Completed 200+ projects across ML, DL, NLP & GenAI; many deployed with Flask, HTML, CSS, JS, SQL.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LEARNING ===================== -->
+  <section id="learning" class="section" aria-label="Current Learning">
+    <div class="wrap">
+      <div class="card" data-reveal>
+        <h2 class="title">Current Learning</h2>
+        <div class="grid cols-2">
+          <div class="feature"><i class="ri-robot-2-line"></i><div><strong>Advanced AI Agents</strong><p class="lead">Agentic workflows, tools, memory, evaluation; grounding & safety.</p></div></div>
+          <div class="feature"><i class="ri-slideshow-3-line"></i><div><strong>Reinforcement Learning</strong><p class="lead">Policy gradients, offline RL, safe exploration for real‑world constraints.</p></div></div>
+          <div class="feature"><i class="ri-cpu-line"></i><div><strong>Edge AI</strong><p class="lead">Optimization, quantization, deployment to constrained devices.</p></div></div>
+          <div class="feature"><i class="ri-shield-check-line"></i><div><strong>Ethical AI</strong><p class="lead">Bias detection/mitigation, transparency, model cards, red‑teaming.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== INTERESTS ===================== -->
+  <section id="interests" class="section" aria-label="Features & Interests">
+    <div class="wrap">
+      <div class="card" data-reveal>
+        <h2 class="title">Focus Areas</h2>
+        <div class="grid cols-3">
+          <div class="feature"><i class="ri-image-ai-line"></i><div><strong>Computer Vision</strong><p class="lead">Real‑time detection, tracking, OCR, quality inspection pipelines.</p></div></div>
+          <div class="feature"><i class="ri-factory-line"></i><div><strong>Manufacturing</strong><p class="lead">Predictive maintenance, anomaly detection, shop‑floor automation.</p></div></div>
+          <div class="feature"><i class="ri-macbook-line"></i><div><strong>Robotics</strong><p class="lead">Perception + navigation + task planning for human‑in‑the‑loop systems.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="section" aria-label="Contact">
+    <div class="wrap">
+      <div class="card contact" data-reveal>
+        <div class="contact__cta">
+          <h2 class="title">Let’s build something</h2>
+          <p class="lead">📍 Seven Wells, Chennai — 600001</p>
+          <div class="contact__row"><i class="ri-phone-line"></i><a href="tel:+918489728895">+91 8489728895</a></div>
+          <div class="contact__row"><i class="ri-mail-open-line"></i><a href="mailto:bashith67@gmail.com">bashith67@gmail.com</a></div>
+        </div>
+        <form id="contactForm" autocomplete="on">
+          <input class="input" type="text" name="name" placeholder="Your name" aria-label="Your name" required>
+          <input class="input" type="email" name="email" placeholder="Your email" aria-label="Your email" required>
+          <textarea class="input" name="message" placeholder="Your message" aria-label="Your message" required></textarea>
+          <button class="btn" type="submit"><i class="ri-send-plane-2-line"></i> Send Message</button>
+          <p id="formStatus" class="lead" role="status" aria-live="polite" style="display:none; margin:8px 0 0"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer aria-label="Footer">
+    <div class="footer__inner">
+      <div class="social" aria-label="Social links">
+        <a href="#" aria-label="GitHub"><i class="ri-github-line"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-box-line"></i></a>
+        <a href="#" aria-label="Kaggle"><i class="ri-database-2-line"></i></a>
+        <a href="#" aria-label="Email"><i class="ri-mail-line"></i></a>
+      </div>
+      <small>© <span id="year"></span> Abdul Bashith • AI/ML Engineer</small>
+    </div>
+  </footer>
+
+  <!-- ===================== THEME TOGGLE ===================== -->
+  <div class="toggle" aria-label="Theme toggle">
+    <button id="themeBtn" title="Toggle theme" aria-pressed="false"><i class="ri-sun-line" id="themeIcon"></i></button>
+  </div>
+
+  <script>
+    // =========================================================
+    // JavaScript: particles, scroll reveal, skill bars, filters,
+    // theme toggle, scrollspy, contact form (demo), parallax
+    // =========================================================
+
+    const $ = (q, s = document) => s.querySelector(q);
+    const $$ = (q, s = document) => Array.from(s.querySelectorAll(q));
+
+    // ---------- Year ----------
+    $('#year').textContent = new Date().getFullYear();
+
+    // ---------- Theme Toggle ----------
+    const themeBtn = $('#themeBtn');
+    const themeIcon = $('#themeIcon');
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const saved = localStorage.getItem('theme');
+
+    function applyTheme(mode){
+      if(mode === 'light') { document.documentElement.classList.add('light'); themeIcon.className = 'ri-moon-line'; themeBtn.setAttribute('aria-pressed','true'); }
+      else { document.documentElement.classList.remove('light'); themeIcon.className = 'ri-sun-line'; themeBtn.setAttribute('aria-pressed','false'); }
+    }
+    applyTheme(saved || (prefersLight ? 'light' : 'dark'));
+
+    themeBtn.addEventListener('click', () => {
+      const isLight = document.documentElement.classList.toggle('light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      themeIcon.className = isLight ? 'ri-moon-line' : 'ri-sun-line';
+      themeBtn.setAttribute('aria-pressed', String(isLight));
+    });
+
+    // ---------- Particles (simple) ----------
+    const canv = document.getElementById('particles');
+    const ctx = canv.getContext('2d');
+    let W, H, dots;
+
+    function resize(){ W = canv.width = innerWidth; H = canv.height = document.querySelector('.hero').offsetHeight; initDots(); }
+    window.addEventListener('resize', resize);
+
+    function initDots(){
+      const count = Math.min(120, Math.floor(W * H / 18000));
+      dots = Array.from({length: count}, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - .5) * .4,
+        vy: (Math.random() - .5) * .4,
+        r: Math.random() * 1.6 + .3
+      }));
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      // lines
+      for(let i=0;i<dots.length;i++){
+        for(let j=i+1;j<dots.length;j++){
+          const a = dots[i], b = dots[j]; const dx=a.x-b.x, dy=a.y-b.y; const d = Math.hypot(dx,dy);
+          if(d < 120){ ctx.globalAlpha = (120-d)/120 * .35; ctx.strokeStyle = '#5b95ff'; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+        }
+      }
+      ctx.globalAlpha = 1;
+      dots.forEach(p => { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fillStyle = '#cfe0ff'; ctx.fill(); p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>H) p.vy*=-1; });
+      requestAnimationFrame(draw);
+    }
+
+    resize(); draw();
+
+    // ---------- Scroll Reveal ----------
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('reveal'); io.unobserve(e.target);} });
+    }, { threshold: .1 });
+    $$('[data-reveal]').forEach(el => io.observe(el));
+
+    // ---------- Skill Bars animate on view ----------
+    const bars = $$('.skillbar');
+    const ioBars = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const bar = e.target.querySelector('.skillbar__bar');
+          const lvl = e.target.dataset.level || 75; bar.style.width = lvl + '%'; ioBars.unobserve(e.target);
+        }
+      });
+    }, { threshold:.3 });
+    bars.forEach(b=> ioBars.observe(b));
+
+    // ---------- Project Filters ----------
+    const filters = $$('.filter');
+    const grid = $('#projectGrid');
+    filters.forEach(btn => btn.addEventListener('click', () => {
+      filters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      $$('.project', grid).forEach(card => {
+        const cats = (card.dataset.cat || '').split(/\s+/);
+        const show = f === 'all' || cats.includes(f);
+        card.style.display = show ? '' : 'none';
+      });
+    }));
+
+    // ---------- Scrollspy ----------
+    const navLinks = $$('.nav__links a');
+    const sections = ['about','skills','projects','learning','interests','contact'].map(id => document.getElementById(id));
+    const spy = new IntersectionObserver((entries)=>{
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const id = entry.target.id;
+          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+        }
+      });
+    }, { threshold: .5 });
+    sections.forEach(s => s && spy.observe(s));
+
+    // ---------- Contact form (demo only) ----------
+    const form = $('#contactForm'); const statusEl = $('#formStatus');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      statusEl.style.display = 'block';
+      statusEl.textContent = 'Sending…';
+      setTimeout(()=>{ statusEl.textContent = 'Thanks! I\'ll get back to you soon.'; form.reset(); }, 900);
+    });
+
+    // ---------- Parallax on mouse for hero blobs ----------
+    const hero = $('.hero');
+    const blobs = $$('.hero__blob');
+    hero.addEventListener('pointermove', (e)=>{
+      const rect = hero.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - .5;
+      const y = (e.clientY - rect.top) / rect.height - .5;
+      blobs[0].style.transform = `translate(${x*20}px, ${y*20}px) scale(1) rotate(15deg)`;
+      blobs[1].style.transform = `translate(${x*-25}px, ${y*-15}px) scale(1) rotate(-10deg)`;
+    });
+  </script>
+</body>
+</html>
